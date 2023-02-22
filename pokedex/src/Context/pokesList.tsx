@@ -17,17 +17,12 @@ interface IApiResponse{
   request : object;
   status : number;
   statusText: string;
-  results: Array<IPoke>;
-}
-interface pokesList{
-  pokesList: Array<IPoke>;
+  results: IPoke[];
 }
 
 interface IPokesContext{
-  pokesList: Array<IPoke>;
-  /* pokeList: IPoke; */
-  setPokeList: React.Dispatch<React.SetStateAction<pokesList>>;
-  getAllPokes: ()=> void;
+  pokesList: IPoke[];
+  setPokesList: React.Dispatch<React.SetStateAction<IPoke[]>>;
 }
 
 export const PokeListContext = createContext({} as IPokesContext);  
@@ -49,7 +44,7 @@ export const PokeListProvider = ({ children }:IChildrenProps) => {
   }, []);
   
   return (
-    <PokeListContext.Provider value={{ pokesList }}>
+    <PokeListContext.Provider value={{ pokesList, setPokesList }}>
       {children}
     </PokeListContext.Provider>
   );

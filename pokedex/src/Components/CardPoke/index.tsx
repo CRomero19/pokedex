@@ -12,7 +12,7 @@ const CardPoke = ({name, address}:ICardPokeProps) => {
     <StyledCardPoke>
       <p> {name} </p>
       <p> {address} </p>
-      <Link to={`/home/poke/${address}`}>  More... </Link>
+      <Link to={`/home/poke/${address.slice(34)}`}>  More... </Link>
     </StyledCardPoke>
   )
 }
