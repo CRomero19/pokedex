@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { StyledCardPoke } from './style';
 
 interface ICardPokeProps{
@@ -11,6 +12,7 @@ const CardPoke = ({name, address}:ICardPokeProps) => {
     <StyledCardPoke>
       <p> {name} </p>
       <p> {address} </p>
+      <Link to={`/home/poke/${address}`}>  More... </Link>
     </StyledCardPoke>
   )
 }

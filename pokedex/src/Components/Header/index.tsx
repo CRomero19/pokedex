@@ -1,15 +1,15 @@
-import React from 'react'
 import { Link } from "react-router-dom";
+import { StyledHeader } from './style';
 
 const Header = () => {
   return (
-    <header>
+    <StyledHeader>
       <nav>
         <Link to={'/home'}> HOME</Link>
         <Link to={'/home/poketeam'}> POKETEAM</Link>
         <Link to={'/feedback'}> FEEDBACK </Link>
       </nav>
-    </header>
+    </StyledHeader>
   )
 }
 
