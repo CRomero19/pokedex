@@ -23,6 +23,10 @@
     --font-family-medium:'Lato', sans-serif;
     --font-family-bold:'Oswald', sans-serif;
   
+    --font-title-big:3rem;
+    --font-title-medium:2rem;
+    --font-title-small:1.5rem;
+
     --font-size-big: 1.125rem;
     --font-size-medium: 1rem;
     --font-size-regular: 0.875rem;

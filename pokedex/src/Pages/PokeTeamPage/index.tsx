@@ -1,9 +1,10 @@
 import React from 'react'
+import PokeTeam from '../../Components/PokeTeam'
 
 const PokeTeamPage = () => {
   return (
     <div>
-      <h1> POKETEAM PAGE </h1>
+      <PokeTeam/>
     </div>
   )
 }

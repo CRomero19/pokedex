@@ -10,16 +10,6 @@ interface IPoke{
   url:string;
 }
 
-interface IApiResponse{
-  config: object;
-  data : object;
-  headers : object;
-  request : object;
-  status : number;
-  statusText: string;
-  results: IPoke[];
-}
-
 interface IPokesContext{
   pokesList: IPoke[];
   setPokesList: React.Dispatch<React.SetStateAction<IPoke[]>>;
@@ -30,11 +20,12 @@ export const PokeListContext = createContext({} as IPokesContext);
 export const PokeListProvider = ({ children }:IChildrenProps) => {
 
   const [pokesList, setPokesList] = useState([] as IPoke[]);
+  
 
   useEffect(() => {
     const getAllPokes = async () => {
       try {
-        const response = await allpokes.get<IApiResponse>("");
+        const response = await allpokes.get("");
         setPokesList(response.data.results);
       } catch (error) {
         console.log(error);
