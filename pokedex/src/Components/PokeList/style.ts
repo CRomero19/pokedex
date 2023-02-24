@@ -4,8 +4,8 @@ export const StyledPokeList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  
-
+  width: 50%;
+  margin: 0 auto;
   li {
     width: 10rem;
     height: fit-content;
@@ -26,6 +26,18 @@ export const StyledPokeList = styled.ul`
     position: absolute;
     top: 0;
     right: 0
+  }
+  .btn-more{
+    margin: none;
+    border: none;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    background-color: var(--color-grey-3);
   }
 
 `;

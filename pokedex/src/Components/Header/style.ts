@@ -7,6 +7,7 @@ export const StyledHeader = styled.header`
     align-items: center;
     justify-content: center;
     box-shadow: 0px 5px 30px rgb(0,0,0,0.5);
+    background-color: white;
 
     margin-bottom: 1.5rem;
     nav{

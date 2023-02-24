@@ -5,6 +5,22 @@ interface pokeTypes {
 }
 
 export const StyledCardPoke = styled.li<pokeTypes>`
+
+  @keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+
   font-family: "Roboto", sans-serif;
   height: 1rem;
   margin: 1rem auto;
@@ -52,9 +68,11 @@ export const StyledCardPoke = styled.li<pokeTypes>`
     border-radius: 360px;
     width: 2rem;
   }
-  .pb-btn:hover {
+  .pb-btn img:hover {
     filter: brightness(1.35);
-    color: var(--color-grey-0);
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+    
   }
   button {
     border: none;

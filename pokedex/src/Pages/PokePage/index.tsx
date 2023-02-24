@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { StyledPokePage } from "./style";
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
+import { CiFaceSmile } from "react-icons/ci";
+import { v1 as uuidv1 } from "uuid";
 
 interface IType {
   name: string;
@@ -55,7 +58,7 @@ const PokePage = () => {
   const [isShiny, setIsShiny] = useState(true);
 
   useEffect(() => {
-    const getAllPokes = async () => {
+    const getPoke = async () => {
       try {
         const response = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${pokeUrl}`
@@ -65,26 +68,68 @@ const PokePage = () => {
         console.log(error);
       }
     };
-    getAllPokes();
+    getPoke();
   }, []);
+
+  console.log(poke);
 
   return (
     <StyledPokePage>
-      <figure onClick={() => setIsShiny(!isShiny)}>
-        {isShiny ? <h1>{poke.name}</h1> : <h1>Shiny {poke.name}</h1>}
+      <div className="poke__header">
+        <button>
+          {" "}
+          <FaAngleDoubleLeft color='var(--color-grey-0)' />{" "}
+        </button>
+        <h1>
+          {" "}
+          {poke.name} <span> Nº{poke.id} </span>
+        </h1>
+        <button>
+          {" "}
+          <FaAngleDoubleRight color='var(--color-grey-0)'/>{" "}
+        </button>
+      </div>
 
-        {isShiny ? (
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeUrl}.png`}
-            alt=""
-          />
-        ) : (
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${pokeUrl}.png`}
-            alt=""
-          />
-        )}
-      </figure>
+      <div className="container__main">
+        <figure onClick={() => setIsShiny(!isShiny)}>
+          {isShiny ? (
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeUrl}.png`}
+              alt=""
+            />
+          ) : (
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${pokeUrl}.png`}
+              alt=""
+            />
+          )}
+          <p className="note">
+            {" "}
+            Try clicking on the img! <CiFaceSmile />{" "}
+          </p>
+        </figure>
+        <div className="container__info">
+          <h1> informações</h1>
+        </div>
+      </div>
+      <div className="container__aside">
+        <div className="container__status">
+          <p> Weight = {poke.weight} </p>
+          {poke.id != undefined ? (
+            poke.stats.map((stat) => (
+              <p key={uuidv1()}>
+                {" "}
+                {stat.stat.name.toUpperCase()} = {stat.base_stat}
+              </p>
+            ))
+          ) : (
+            <p> carregando...</p>
+          )}
+        </div>
+        <div className="container__other">
+            <p>other info</p>
+        </div>
+      </div>
     </StyledPokePage>
   );
 };

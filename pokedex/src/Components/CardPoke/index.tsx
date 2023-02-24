@@ -56,9 +56,9 @@ const CardPoke = ({ name, address }: ICardPokeProps) => {
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`}alt=""/>
       <Link to={`/home/poke/${pokeId}`} className='link'> <TiPlusOutline/> </Link>
       
-      <div className="pb-btn">
+      <div className="pb-btn" onClick={() => addToTeam(name)}>
         <img src={pb} alt="" />
-        <button type="button" onClick={() => addToTeam(name)}> Catch! </button>
+        {/* pokeTeam.includes(poke) && <p>Gotcha!!</p> */}
       </div>
     </StyledCardPoke>
   );
