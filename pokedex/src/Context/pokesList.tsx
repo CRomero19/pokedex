@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
-import { base } from "../Services/pokeapi";
+import { baseURL } from "../Services/pokeapi";
 
 interface IChildrenProps {
   children: React.ReactNode;
@@ -23,12 +23,12 @@ export const PokeListContext = createContext({} as IPokesContext);
 export const PokeListProvider = ({ children }: IChildrenProps) => {
   const [pokesList, setPokesList] = useState([] as IPoke[]);
 
-  const [pokeLimit, setPokeLimit] = useState<number>(15);
+  const [pokeLimit, setPokeLimit] = useState<number>(20);
 
   useEffect(() => {
     const getAllPokes = async () => {
       try {
-        const response = await base.get(`pokemon?limit=${pokeLimit}}&offset=0`);
+        const response = await baseURL.get(`pokemon?limit=${pokeLimit}}&offset=0`);
         setPokesList(response.data.results);
       } catch (error) {
         console.log(error);

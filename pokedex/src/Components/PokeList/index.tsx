@@ -9,7 +9,7 @@ const PokeList = () => {
   const { pokesList, pokeLimit, setPokeLimit } = useContext(PokeListContext)
 
   const morePokes = () => {
-    setPokeLimit(pokeLimit + 15);
+    setPokeLimit(pokeLimit + 20);
   };
 
   return (

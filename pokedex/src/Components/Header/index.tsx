@@ -5,9 +5,9 @@ const Header = () => {
   return (
     <StyledHeader>
       <nav>
-        <Link to={'/home'}> HOME</Link>
-        <Link to={'/home/poketeam'}> POKETEAM</Link>
-        <Link to={'/feedback'}> FEEDBACK </Link>
+        <Link to={'/home'}> Pokedex </Link>
+        <Link to={'/home/poketeam'}> PokeTeam </Link>
+        <Link to={'/feedback'}> Feedback </Link>
       </nav>
     </StyledHeader>
   )

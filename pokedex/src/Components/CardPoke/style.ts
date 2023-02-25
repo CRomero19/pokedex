@@ -31,25 +31,26 @@ export const StyledCardPoke = styled.li<pokeTypes>`
   padding: 1rem;
   color: aliceblue;
   background-color: ${({ pokeTypes }) =>
-    (pokeTypes[0] === "fire" && "#9d031f") ||
-    (pokeTypes[0] === "water" && "#2C63D1") ||
-    (pokeTypes[0] === "ground" && "#7B3F00") ||
+    (pokeTypes[0] === "fire" && "#fd7d24") ||
+    (pokeTypes[0] === "water" && "#4593c4") ||
+    (pokeTypes[0] === "ground" && "#aa9941") ||
     (pokeTypes[0] === "grass" && "green") ||
-    (pokeTypes[0] === "bug" && "#90EE90") ||
-    (pokeTypes[0] === "rock" && "#3E3A3E") ||
-    (pokeTypes[0] === "electric" && "#F4EE41") ||
-    (pokeTypes[0] === "psychic" && "#CB7CC9") ||
+    (pokeTypes[0] === "bug" && "#729f40") ||
+    (pokeTypes[0] === "rock" && "#a38c22") ||
+    (pokeTypes[0] === "electric" && "#eed435") ||
+    (pokeTypes[0] === "psychic" && "#f466ba") ||
     (pokeTypes[0] === "water" && "blue") ||
-    (pokeTypes[0] === "fighting" && "#d87822") ||
+    (pokeTypes[0] === "fighting" && "#BF5C1E") ||
     (pokeTypes[0] === "normal" && "#DAA06D") ||
     (pokeTypes[0] === "ice" && "#2CD1CB") ||
     (pokeTypes[0] === "dragon" && "#D12C5E") ||
-    (pokeTypes[0] === "poison" && "#BC2CD1") ||
-    (pokeTypes[0] === "fairy" && "#FF0CF7") ||
-    (pokeTypes[0] === "steel" && "#CDC3CD") ||
-    (pokeTypes[0] === "dark" && "#39527D") ||
-    (pokeTypes[0] === "ghost" && "#350D52") ||
-    "grey"};
+    (pokeTypes[0] === "poison" && "#b881c4") ||
+    (pokeTypes[0] === "fairy" && "#fdb9ea") ||
+    (pokeTypes[0] === "steel" && "#9db8b7") ||
+    (pokeTypes[0] === "dark" && "#707070") ||
+    (pokeTypes[0] === "ghost" && "#7a649e") ||
+    (pokeTypes[0] === "flying" && "#350D52")
+};
   img {
     object-fit: contain;
     width: 5rem;
