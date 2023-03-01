@@ -77,13 +77,13 @@ interface IPokeContext {
     pokeImg:string;
     description:IPokeDescription;
     changePokeImg:(clickedVariety: string) =>void;
-    pokeUrl:string | number;
     pokeVarieties:IPokeVariety[];
 }
 
 export const PokePageContext = createContext({} as IPokeContext);
 
 export const PokePageProvider = ({ children }: IChildrenProps) => {
+
   const { pokeUrl } = useParams();
 
   const [poke, setPoke] = useState({} as IPokeInfo);
@@ -139,8 +139,9 @@ export const PokePageProvider = ({ children }: IChildrenProps) => {
     }
   };
 
+  
   return (
-    <PokePageContext.Provider value={{ poke, pokeTypes, pokeImg, description, changePokeImg,pokeUrl,pokeVarieties }}>
+    <PokePageContext.Provider value={{ poke, pokeTypes, pokeImg, description, changePokeImg, pokeVarieties }}>
       {children}
     </PokePageContext.Provider>
   );

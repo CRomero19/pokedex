@@ -5,6 +5,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { v1 as uuidv1 } from "uuid";
 import { baseURL } from "../../Services/pokeapi";
 import PokeEvolutions from "../../Components/PokeEvolutions";
+import TagType from "../../Components/TagType/TagType";
 
 interface IType {
   name: string;
@@ -98,7 +99,7 @@ const PokePage = () => {
       }
     };
     getPoke();
-  }, []);
+  }, [pokeUrl]);
 
   useEffect(() => {
     const getDescription = async () => {
@@ -135,7 +136,7 @@ const PokePage = () => {
     <StyledPokePage pokeTypes={pokeTypes}>
       <div className="poke__header">
         <button onClick={() => location.reload()}>
-          <Link to={`http://localhost:5174/home/poke/${Number(pokeUrl) - 1}`}>
+          <Link to={`/home/poke/${Number(pokeUrl) - 1}`}>
             {" "}
             <FaAngleDoubleLeft color="var(--color-grey-0)" />{" "}
           </Link>
@@ -146,14 +147,16 @@ const PokePage = () => {
         </h1>
         <div className="types">
           {poke.types != undefined ? (
-            poke.types.map((type) => <p key={uuidv1()}>{type.type.name}</p>)
+            poke.types.map((type) => <TagType key={uuidv1()} textType={type.type.name}/>)
           ) : (
             <p> carregando...</p>
           )}
         </div>
 
+        
+
         <button onClick={() => location.reload()}>
-          <Link to={`http://localhost:5174/home/poke/${Number(pokeUrl) + 1}`}>
+          <Link to={`/home/poke/${Number(pokeUrl) + 1}`}>
             {" "}
             <FaAngleDoubleRight color="var(--color-grey-0)" />{" "}
           </Link>
