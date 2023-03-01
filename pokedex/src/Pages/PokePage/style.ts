@@ -1,44 +1,9 @@
 import styled from "styled-components";
 
 export const StyledPokePage = styled.div`
-  width: 50%;
+  width: 55%;
   margin: 0 auto;
-  background-color: red;
-  padding: 0.3rem;
-  .types{
-    display: flex;
-    width: fit-content;
-    gap: 1rem;
-  }
-  .types p {
-    color: var(--color-grey-0);
-    background-color: var(--color-grey-3);
-    border-radius: 8px;
-    padding: 0.1rem 0.4rem;
-    text-transform: capitalize;
-  }
-  .note {
-    position: absolute;
-    opacity: 0.3;
-    bottom: 0;
-    width: 100%;
-    right: 0.5%;
-    text-align: center;
-
-    cursor: pointer;
-
-    display: flex;
-    align-content: center;
-    justify-content: center;
-  }
-  .poke__header {
-    display: flex;
-    justify-content: space-between;
-  }
-  .poke__header button {
-    border: none;
-    background-color: transparent;
-  }
+  
   .poke__header {
     font-size: var(--font-title-medium);
     text-transform: capitalize;
@@ -48,56 +13,93 @@ export const StyledPokePage = styled.div`
     background-color: var(--color-grey-3);
     border-radius: 8px 8px 0px 0px;
     margin-bottom: 0.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 0.3rem;
   }
+  .poke__header button {
+    border: none;
+    background-color: transparent;
+  }
+  main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .types {
+    display: flex;
+    width: fit-content;
+    gap: 1rem;
+  }
+  .types p {
+    color: var(--color-grey-0);
+    border-radius: var(--radius-default);
+    padding: 0.2rem 0.6rem;
+    text-transform: capitalize;
+    font-size: 1rem;
+    background-color: red;
+  }
+
   figure {
     position: relative;
-    cursor: pointer;
     background-color: var(--color-grey-1);
     border-radius: 8px;
     padding: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: var(--radius-box-1)
   }
   figure img {
     margin: 1rem;
     width: 95%;
   }
-  .container__main {
-    display: flex;
+  select{
+    text-transform: capitalize;
+    background-color: var(--color-grey-2);
+    color: var(--color-grey-0);
+    border-radius: 8px;
+    padding: 0.5rem;
   }
+  option{
+    text-transform: capitalize;
+  }
+
   .container__info {
     background-color: var(--color-grey-0);
     border-radius: 8px;
-    margin-left: 0.5rem;
+    border-radius: var(--radius-box-2);
+    background-color: pink;
     padding: 1rem;
   }
 
-  .container__aside {
-    display: flex;
-    margin-top: 0.5rem;
-    gap: 0.5rem;
-  }
   .container__status {
     background-color: var(--color-grey-0);
-    border-radius: 15px 0px 15px 0px;
+    border-radius: var(--radius-box-2);
     padding: 1rem;
-    width: 50%;
+    width: 100%;
+    background-color: green;
   }
   .container__other {
     background-color: var(--color-grey-0);
-    border-radius: 0px 15px 0px 15px;
+    border-radius: var(--radius-box-1);
     padding: 1rem;
-    width: 50%;
+    width: 100%;
+    background-color: yellow;
   }
 
-
-  @media (max-width:1024px) {
+  @media (max-width: 1024px) {
     width: 98%;
 
     figure img {
-    margin: 1rem;
-    width: 95%;
-    margin: 0 auto;
+      margin: 1rem;
+      width: 95%;
+      margin: 0 auto;
+    }
   }
-
-
-  } 
 `;

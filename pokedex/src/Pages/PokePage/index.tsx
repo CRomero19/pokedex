@@ -1,9 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { StyledPokePage } from "./style";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
-import { CiFaceSmile } from "react-icons/ci";
 import { v1 as uuidv1 } from "uuid";
 import { baseURL } from "../../Services/pokeapi";
 import PokeEvolutions from "../../Components/PokeEvolutions";
@@ -57,6 +55,13 @@ interface IFlavorText {
   language: object;
   version: object;
 }
+interface IPokeVariety {
+  is_default: boolean;
+  pokemon: {
+    name: string;
+    url: string;
+  };
+}
 interface IPokeDescription {
   base_happiness: number;
   capture_rate: number;
@@ -66,6 +71,7 @@ interface IPokeDescription {
   is_baby: boolean;
   is_legendary: boolean;
   is_mythical: boolean;
+  varieties: IPokeVariety[];
 }
 
 const PokePage = () => {
@@ -74,6 +80,9 @@ const PokePage = () => {
   const [poke, setPoke] = useState({} as IPokeInfo);
   const [isShiny, setIsShiny] = useState(true);
   const [description, setDescription] = useState({} as IPokeDescription);
+  const [pokeImg, setPokeImg] = useState(
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeUrl}.png` as string
+  );
 
   useEffect(() => {
     const getPoke = async () => {
@@ -98,8 +107,26 @@ const PokePage = () => {
     };
     getDescription();
   }, []);
+  const pokeVarieties = description.varieties;
 
-  console.log(poke.types);
+  const changePokeImg = (clickedVariety: string) => {
+    console.log(clickedVariety);
+    const variety = pokeVarieties.find(
+      (variety) => variety.pokemon.name == clickedVariety
+    );
+    const varietyUrl = variety?.pokemon.url;
+    const varietyId = varietyUrl?.slice(34).replace("/", "");
+    if (clickedVariety === `Shiny ${poke.name}`) {
+      setPokeImg(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${pokeUrl}.png`
+      );
+    } else {
+      setPokeImg(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${varietyId}.png`
+      );
+    }
+  };
+
   console.log(description);
 
   return (
@@ -113,42 +140,50 @@ const PokePage = () => {
           {" "}
           {poke.name} <span> Nº{poke.id} </span>{" "}
         </h1>
+        <div className="types">
+          {poke.types != undefined ? (
+            poke.types.map((type) => <p key={uuidv1()}>{type.type.name}</p>)
+          ) : (
+            <p> carregando...</p>
+          )}
+        </div>
+
         <button>
           {" "}
           <FaAngleDoubleRight color="var(--color-grey-0)" />{" "}
         </button>
       </div>
+      <main>
+        <figure>
+          <img src={pokeImg} alt="" />
 
-      <div className="container__main">
-        <figure onClick={() => setIsShiny(!isShiny)}>
-          {isShiny ? (
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeUrl}.png`}
-              alt=""
-            />
-          ) : (
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${pokeUrl}.png`}
-              alt=""
-            />
+          {pokeVarieties && (
+            <select
+              name=""
+              id=""
+              onChange={(event) => changePokeImg(event.target.value)}
+            >
+              {pokeVarieties.map((variety) => (
+                <option key={variety.pokemon.name} value={variety.pokemon.name}>
+                  {variety.pokemon.name.replaceAll("-", " ")}
+                </option>
+              ))}
+              <option value={`Shiny ${poke.name}`}> Shiny {poke.name} </option>
+            </select>
           )}
-          <p className="note">
-            {" "}
-            Try clicking on the img! <CiFaceSmile />{" "}
-          </p>
         </figure>
         <div className="container__info">
           <h1> General information </h1>
           {description.base_happiness != undefined ? (
             <div>
               <p>
-                {description.flavor_text_entries[0].flavor_text.replace(
+                {description.flavor_text_entries[0].flavor_text.replaceAll(
                   `\f` || "\n",
                   " "
                 )}
               </p>
               <p>
-                {description.flavor_text_entries[2].flavor_text.replace(
+                {description.flavor_text_entries[2].flavor_text.replaceAll(
                   `\f` || "\n",
                   " "
                 )}
@@ -157,17 +192,8 @@ const PokePage = () => {
           ) : (
             <p> </p>
           )}
-
-          <div className="types">
-            {poke.types != undefined ? (
-              poke.types.map((type) => <p key={uuidv1()}>{type.type.name}</p>)
-            ) : (
-              <p> carregando...</p>
-            )}
-          </div>
         </div>
-      </div>
-      <div className="container__aside">
+
         <div className="container__status">
           <h2> Battle Attributes </h2>
           {poke.id != undefined ? (
@@ -183,6 +209,7 @@ const PokePage = () => {
             <p> carregando...</p>
           )}
         </div>
+
         <div className="container__other">
           <h2> Poke Nature </h2>
           <p> Weight: {(poke.weight * 0.1).toFixed(1)}kg </p>
@@ -190,8 +217,7 @@ const PokePage = () => {
           <p> Base happiness: {description.base_happiness}</p>
           <p> Capture rate: {description.capture_rate}</p>
         </div>
-      </div>
-
+      </main>
       <PokeEvolutions />
     </StyledPokePage>
   );

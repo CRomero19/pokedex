@@ -1,16 +1,13 @@
-import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { baseURL } from "../Services/pokeapi";
 
 interface IChildrenProps {
   children: React.ReactNode;
 }
-
 interface IPoke {
   name: string;
   url: string;
 }
-
 interface IPokesContext {
   pokesList: IPoke[];
   setPokesList: React.Dispatch<React.SetStateAction<IPoke[]>>;

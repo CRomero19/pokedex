@@ -1,11 +1,9 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PokeTeamContext } from "../../Context/poketeam";
 import { StyledCardPoke } from "./style";
-import { v1 as uuidv1 } from 'uuid';
 import pb from '../../assets/pbicon.png'
-import { TiPlusOutline } from 'react-icons/ti';
 
 interface ICardPokeProps {
   name: string;
@@ -20,8 +18,9 @@ interface IType{
 }
 
 const CardPoke = ({ name, address }: ICardPokeProps) => {
-  const { pokeTeam, setPokeTeam, addToTeam, removeFromTeam } =
-    useContext(PokeTeamContext);
+  const { addToTeam } = useContext(PokeTeamContext);
+
+  const navigate = useNavigate()
   
   const [pokeTypes, setPokeTypes] = useState([]as string[])  
 
@@ -41,20 +40,16 @@ const CardPoke = ({ name, address }: ICardPokeProps) => {
     pokeTypes();
   }, []);
 
+  const goToPokePage = () =>{
+    navigate(`/home/poke/${pokeId}`)
+  }
+
   return (
-    <StyledCardPoke pokeTypes={pokeTypes}>
+    <StyledCardPoke pokeTypes={pokeTypes} onClick={()=>goToPokePage()}>
       <p>{name} </p>
-      
-      {/* <div className="poke-type">
-      {
-      pokeTypes.map(type=> 
-        <span key={uuidv1()}> {type} </span>
-        )
-      }
-      </div> */}
 
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`}alt=""/>
-      <Link to={`/home/poke/${pokeId}`} className='link'> <TiPlusOutline/> </Link>
+      
       
       <div className="pb-btn" onClick={() => addToTeam(name)}>
         <img src={pb} alt="" />

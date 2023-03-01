@@ -17,7 +17,9 @@
     --color-succes-vibrant: #00FF00;
     --color-information: #155bcb;
   
-    --radius-default: 0.5rem;
+    --radius-default: 0.3rem;
+    --radius-box-1: 0;
+    --radius-box-2: 0;
   
     --font-family-light:'Lato', sans-serif;
     --font-family-medium:'Lato', sans-serif;

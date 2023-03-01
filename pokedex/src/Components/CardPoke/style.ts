@@ -30,6 +30,7 @@ export const StyledCardPoke = styled.li<pokeTypes>`
 
   padding: 1rem;
   color: aliceblue;
+  cursor: pointer;
   background-color: ${({ pokeTypes }) =>
     (pokeTypes[0] === "fire" && "#fd7d24") ||
     (pokeTypes[0] === "water" && "#4593c4") ||
@@ -51,6 +52,10 @@ export const StyledCardPoke = styled.li<pokeTypes>`
     (pokeTypes[0] === "ghost" && "#7a649e") ||
     (pokeTypes[0] === "flying" && "#350D52")
 };
+transition: 600ms;
+&&:hover{
+  filter: brightness(1.2);
+}
   img {
     object-fit: contain;
     width: 5rem;

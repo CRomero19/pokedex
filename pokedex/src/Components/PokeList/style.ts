@@ -39,6 +39,11 @@ export const StyledPokeList = styled.ul`
 
     width: 100%;
     background-color: var(--color-grey-3);
+    
+    transition: 500ms;
+  }
+  .btn-more:hover{
+    background-color: var(--color-grey-hover);
   }
 
 `;
