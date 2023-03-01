@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { StyledPokePage } from "./style";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { v1 as uuidv1 } from "uuid";
@@ -75,10 +75,11 @@ interface IPokeDescription {
 }
 
 const PokePage = () => {
+  const navigate = useNavigate();
   const { pokeUrl } = useParams();
 
   const [poke, setPoke] = useState({} as IPokeInfo);
-  const [isShiny, setIsShiny] = useState(true);
+  const [pokeTypes, setPokeTypes] = useState([] as string[]);
   const [description, setDescription] = useState({} as IPokeDescription);
   const [pokeImg, setPokeImg] = useState(
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeUrl}.png` as string
@@ -89,6 +90,9 @@ const PokePage = () => {
       try {
         const response = await baseURL.get(`/pokemon/${pokeUrl}`);
         setPoke(response.data);
+        const types = response.data.types;
+        const typesArray = types.map((type: IPokeTypes) => type.type.name);
+        setPokeTypes(typesArray);
       } catch (error) {
         console.log(error);
       }
@@ -127,14 +131,14 @@ const PokePage = () => {
     }
   };
 
-  console.log(description);
-
   return (
-    <StyledPokePage>
+    <StyledPokePage pokeTypes={pokeTypes}>
       <div className="poke__header">
-        <button>
-          {" "}
-          <FaAngleDoubleLeft color="var(--color-grey-0)" />{" "}
+        <button onClick={() => location.reload()}>
+          <Link to={`http://localhost:5174/home/poke/${Number(pokeUrl) - 1}`}>
+            {" "}
+            <FaAngleDoubleLeft color="var(--color-grey-0)" />{" "}
+          </Link>
         </button>
         <h1>
           {" "}
@@ -148,9 +152,11 @@ const PokePage = () => {
           )}
         </div>
 
-        <button>
-          {" "}
-          <FaAngleDoubleRight color="var(--color-grey-0)" />{" "}
+        <button onClick={() => location.reload()}>
+          <Link to={`http://localhost:5174/home/poke/${Number(pokeUrl) + 1}`}>
+            {" "}
+            <FaAngleDoubleRight color="var(--color-grey-0)" />{" "}
+          </Link>
         </button>
       </div>
       <main>
@@ -177,13 +183,13 @@ const PokePage = () => {
           {description.base_happiness != undefined ? (
             <div>
               <p>
-                {description.flavor_text_entries[0].flavor_text.replaceAll(
+                {description.flavor_text_entries[1].flavor_text.replaceAll(
                   `\f` || "\n",
                   " "
                 )}
               </p>
               <p>
-                {description.flavor_text_entries[2].flavor_text.replaceAll(
+                {description.flavor_text_entries[3].flavor_text.replaceAll(
                   `\f` || "\n",
                   " "
                 )}

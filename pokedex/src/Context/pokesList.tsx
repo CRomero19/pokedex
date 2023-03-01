@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { baseURL } from "../Services/pokeapi";
 
-interface IChildrenProps {
+export interface IChildrenProps {
   children: React.ReactNode;
 }
 interface IPoke {

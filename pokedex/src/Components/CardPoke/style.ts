@@ -20,7 +20,6 @@ export const StyledCardPoke = styled.li<pokeTypes>`
   100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
 
-
   font-family: "Roboto", sans-serif;
   height: 1rem;
   margin: 1rem auto;

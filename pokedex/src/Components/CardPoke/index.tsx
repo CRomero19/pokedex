@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PokeTeamContext } from "../../Context/poketeam";
 import { StyledCardPoke } from "./style";
 import pb from '../../assets/pbicon.png'
@@ -49,11 +49,10 @@ const CardPoke = ({ name, address }: ICardPokeProps) => {
       <p>{name} </p>
 
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`}alt=""/>
-      
-      
+
       <div className="pb-btn" onClick={() => addToTeam(name)}>
         <img src={pb} alt="" />
-        {/* pokeTeam.includes(poke) && <p>Gotcha!!</p> */}
+        {/* pokeTeam.includes(poke) && <p> Gotcha!! </p> */}
       </div>
     </StyledCardPoke>
   );
