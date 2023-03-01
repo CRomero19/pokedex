@@ -36,7 +36,7 @@ export const getTypeColor = (type: string) => {
       return "#7a649e";
     case "flying":
       return "#8aaae3";
-
+      /* linear-gradient(to bottom, #8eaceb 0%,#8eaceb 50%,#bdb9b8 50%,#bdb9b8 50%,#bdb9b8 100%) */
     default: return ''
   }
 }

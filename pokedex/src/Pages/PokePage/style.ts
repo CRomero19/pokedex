@@ -76,7 +76,7 @@ export const StyledPokePage = styled.div`
   }
 
   .container__info {
-    background-color: var(--color-grey-0);
+    background: linear-gradient(to bottom, #8eaceb 0%,#8eaceb 50%,#bdb9b8 50%,#bdb9b8 50%,#bdb9b8 100%);
     border-radius: 8px;
     border-radius: var(--radius-box-2);
     background-color: pink;

@@ -1,6 +1,6 @@
 import { StyledTagType } from './style'
 
-const TagType = ({textType}) => {
+const TagType = ({textType}:any) => {
   return (
     <StyledTagType textType={textType}>
       {textType}

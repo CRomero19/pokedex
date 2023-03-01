@@ -6,7 +6,7 @@ interface textType {
 }
   
 export const StyledTagType = styled.div`
-    background-color: ${({ textType }) => getTypeColor(textType)};
+    background-color: ${({ textType }:any) => getTypeColor(textType)};
     padding: 0.2rem 0.6rem;
 
     font-size: 0.9rem;
