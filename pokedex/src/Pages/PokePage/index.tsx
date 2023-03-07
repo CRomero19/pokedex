@@ -6,6 +6,11 @@ import { v1 as uuidv1 } from "uuid";
 import { baseURL } from "../../Services/pokeapi";
 import PokeEvolutions from "../../Components/PokeEvolutions";
 import TagType from "../../Components/TagType/TagType";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { Box } from "@mui/system";
 
 interface IType {
   name: string;
@@ -147,13 +152,13 @@ const PokePage = () => {
         </h1>
         <div className="types">
           {poke.types != undefined ? (
-            poke.types.map((type) => <TagType key={uuidv1()} textType={type.type.name}/>)
+            poke.types.map((type) => (
+              <TagType key={uuidv1()} textType={type.type.name} />
+            ))
           ) : (
             <p> carregando...</p>
           )}
         </div>
-
-        
 
         <button onClick={() => location.reload()}>
           <Link to={`/home/poke/${Number(pokeUrl) + 1}`}>
@@ -167,18 +172,30 @@ const PokePage = () => {
           <img src={pokeImg} alt="" />
 
           {pokeVarieties && (
-            <select
-              name=""
-              id=""
-              onChange={(event) => changePokeImg(event.target.value)}
-            >
-              {pokeVarieties.map((variety) => (
-                <option key={variety.pokemon.name} value={variety.pokemon.name}>
-                  {variety.pokemon.name.replaceAll("-", " ")}
-                </option>
-              ))}
-              <option value={`Shiny ${poke.name}`}> Shiny {poke.name} </option>
-            </select>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="poke-variety-select"> Poke forms </InputLabel>
+                <Select
+                  labelId="poke-variety-select"
+                  id="poke-variety-select"
+                  value={pokeImg}
+                  label="Poke Variety"
+                  onChange={(event) => changePokeImg(event.target.value)}
+                >
+                  {pokeVarieties.map((variety) => (
+                    <MenuItem
+                      key={variety.pokemon.name}
+                      value={variety.pokemon.name}
+                    >
+                      {variety.pokemon.name[0].toUpperCase() + variety.pokemon.name.substring(1)}
+                    </MenuItem>
+                  ))}
+                  <MenuItem value={`Shiny ${poke.name}`}>
+                    Shiny {poke.name[0].toUpperCase() + poke.name.substring(1)}
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           )}
         </figure>
         <div className="container__info">
