@@ -6,7 +6,7 @@ export const StyledPokeList = styled.ul`
   gap: 1rem;
   width: 50%;
   margin: 0 auto;
-  background-color: var(--color-grey-2);
+  background: linear-gradient(90deg, rgba(65,65,65,1) 25%, rgba(62,62,62,1) 42%, rgba(103,103,103,1) 100%);
   li {
     width: 10rem;
     height: fit-content;

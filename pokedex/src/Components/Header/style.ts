@@ -2,18 +2,29 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
     font-family: 'Roboto', sans-serif;
-    height: 7vh;
+    height: 5vh;
+
+    box-shadow: 0px 5px 30px rgb(0,0,0,0.5);
+    background-color: #FFF;
+
+    margin-bottom: 1.5rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 5px 30px rgb(0,0,0,0.5);
-    background-color: white;
+    gap:1rem;
 
-    margin-bottom: 1.5rem;
     nav{
         display: flex;
-        justify-content: space-evenly;
+        gap:1rem;
 
-        width: 100%;
+        width: fit-content;
+
+        a{
+            text-decoration: none;
+        }
+    }
+    .gif-ball{
+        height: 5vh;
     }
 `

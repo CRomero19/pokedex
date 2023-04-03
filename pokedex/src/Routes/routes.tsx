@@ -9,7 +9,7 @@ import PokeTeamPage from "../Pages/PokeTeamPage";
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="" element={<LandingPage />} />
+      <Route path="" element={<HomePage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/home/poke/:pokeUrl" element={<PokePage />} />
       <Route path="/home/poketeam" element={<PokeTeamPage />} />

@@ -47,6 +47,7 @@ export const StyledCardPoke = styled.li<pokeTypes>`
   margin: 1rem auto;
 
   display: flex;
+  
   gap: 1rem;
 
   padding: 1rem;

@@ -6,7 +6,7 @@ import {AiOutlinePlusSquare} from 'react-icons/ai'
 
 
 const PokeList = () => {
-  const { pokesList, pokeLimit, setPokeLimit } = useContext(PokeListContext)
+  const { filteredPokes, pokeLimit, setPokeLimit } = useContext(PokeListContext)
 
   const morePokes = () => {
     setPokeLimit(pokeLimit + 20);
@@ -14,8 +14,8 @@ const PokeList = () => {
 
   return (
     <StyledPokeList>
-      {pokesList ? (
-        pokesList.map((poke) => (
+      {filteredPokes ? (
+        filteredPokes.map((poke) => (
           <CardPoke key={poke.name} name={poke.name} address={poke.url} />
         ))
       ) : (

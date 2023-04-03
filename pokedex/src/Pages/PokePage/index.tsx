@@ -11,6 +11,8 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Box } from "@mui/system";
+import { PokePageHeader } from "../../Components/PokePageHeader";
+import SelectPokeVariety from "../../Components/SelectPokeVariety";
 
 interface IType {
   name: string;
@@ -81,10 +83,9 @@ interface IPokeDescription {
 }
 
 const PokePage = () => {
-  const navigate = useNavigate();
   const { pokeUrl } = useParams();
-
   const [poke, setPoke] = useState({} as IPokeInfo);
+  const [pokeVarietyName, setPokeVarietyName] = useState("");
   const [pokeTypes, setPokeTypes] = useState([] as string[]);
   const [description, setDescription] = useState({} as IPokeDescription);
   const [pokeImg, setPokeImg] = useState(
@@ -120,7 +121,7 @@ const PokePage = () => {
   const pokeVarieties = description.varieties;
 
   const changePokeImg = (clickedVariety: string) => {
-    console.log(clickedVariety);
+    setPokeVarietyName(clickedVariety)
     const variety = pokeVarieties.find(
       (variety) => variety.pokemon.name == clickedVariety
     );
@@ -136,67 +137,20 @@ const PokePage = () => {
       );
     }
   };
-
+  
   return (
     <StyledPokePage pokeTypes={pokeTypes}>
-      <div className="poke__header">
-        <button onClick={() => location.reload()}>
-          <Link to={`/home/poke/${Number(pokeUrl) - 1}`}>
-            {" "}
-            <FaAngleDoubleLeft color="var(--color-grey-0)" />{" "}
-          </Link>
-        </button>
-        <h1>
-          {" "}
-          {poke.name} <span> Nº{poke.id} </span>{" "}
-        </h1>
-        <div className="types">
-          {poke.types != undefined ? (
-            poke.types.map((type) => (
-              <TagType key={uuidv1()} textType={type.type.name} />
-            ))
-          ) : (
-            <p> carregando...</p>
-          )}
-        </div>
-
-        <button onClick={() => location.reload()}>
-          <Link to={`/home/poke/${Number(pokeUrl) + 1}`}>
-            {" "}
-            <FaAngleDoubleRight color="var(--color-grey-0)" />{" "}
-          </Link>
-        </button>
-      </div>
+      
+      <PokePageHeader pokeUrl={pokeUrl} pokeName ={poke.name} pokeId={poke.id} pokeTypes={poke.types}/>
+      
       <main>
         <figure>
-          <img src={pokeImg} alt="" />
-
+          <img src={pokeImg} alt="" />  
+          
           {pokeVarieties && (
-            <Box sx={{ minWidth: 120 }}>
-              <FormControl fullWidth>
-                <InputLabel id="poke-variety-select"> Poke forms </InputLabel>
-                <Select
-                  labelId="poke-variety-select"
-                  id="poke-variety-select"
-                  value={pokeImg}
-                  label="Poke Variety"
-                  onChange={(event) => changePokeImg(event.target.value)}
-                >
-                  {pokeVarieties.map((variety) => (
-                    <MenuItem
-                      key={variety.pokemon.name}
-                      value={variety.pokemon.name}
-                    >
-                      {variety.pokemon.name[0].toUpperCase() + variety.pokemon.name.substring(1)}
-                    </MenuItem>
-                  ))}
-                  <MenuItem value={`Shiny ${poke.name}`}>
-                    Shiny {poke.name[0].toUpperCase() + poke.name.substring(1)}
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+            <SelectPokeVariety pokeVarietyName={pokeVarietyName} pokeVarieties={pokeVarieties} changePokeImg={changePokeImg} pokeName={poke.name}/>
           )}
+
         </figure>
         <div className="container__info">
           <h1> General information </h1>

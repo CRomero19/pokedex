@@ -1,16 +1,27 @@
 import { Link } from "react-router-dom";
-import { StyledHeader } from './style';
+import { StyledHeader } from "./style";
+import gifPokeball from "../../assets/all-balls.gif";
+import { useContext } from "react";
+import { PokeListContext } from "../../Context/pokesList";
 
 const Header = () => {
+
+  const {setFilter} = useContext(PokeListContext)
   return (
     <StyledHeader>
-      <nav>
-        <Link to={'/home'}> Pokedex </Link>
-        <Link to={'/home/poketeam'}> PokeTeam </Link>
-        <Link to={'/feedback'}> Feedback </Link>
-      </nav>
-    </StyledHeader>
-  )
-}
+      <div className="gif-ball">
+        <img src={gifPokeball} alt="" className="gif-ball" />
+      </div>
 
-export default Header
+      <nav>
+        <Link to={"/home"}> Pokedex </Link>
+        
+      </nav>
+      <div>
+        <input type="text" placeholder="Pesquisar por um pokemon..." onChange={(event)=>setFilter(event.target.value)}/>
+      </div>
+    </StyledHeader>
+  );
+};
+
+export default Header;
