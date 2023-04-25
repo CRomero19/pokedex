@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { StyledPokePage } from "./style";
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { v1 as uuidv1 } from "uuid";
 import { baseURL } from "../../Services/pokeapi";
 import PokeEvolutions from "../../Components/PokeEvolutions";
-import TagType from "../../Components/TagType/TagType";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import { Box } from "@mui/system";
 import { PokePageHeader } from "../../Components/PokePageHeader";
 import SelectPokeVariety from "../../Components/SelectPokeVariety";
 

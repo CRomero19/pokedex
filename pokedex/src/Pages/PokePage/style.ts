@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { getTypeColor } from "../../utils/getTypeColor";
 
 interface pokeTypes {
-  pokeTypes: string[] | string;
+  pokeTypes: string[];
 }
 
 export const StyledPokePage = styled.div`
@@ -47,7 +47,7 @@ export const StyledPokePage = styled.div`
     padding: 0.2rem 0.6rem;
     text-transform: capitalize;
     font-size: 1rem;
-    background-color: ${({ pokeTypes }: any) => getTypeColor(pokeTypes[0])}
+    background-color: ${({ pokeTypes }: pokeTypes) => getTypeColor(pokeTypes[0])}
   }
 
   figure {
