@@ -27,4 +27,9 @@ export const StyledHeader = styled.header`
     .gif-ball{
         height: 5vh;
     }
+    a{
+        color: black;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
 `

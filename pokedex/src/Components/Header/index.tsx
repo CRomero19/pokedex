@@ -17,9 +17,9 @@ const Header = () => {
         <Link to={"/home"}> Pokedex </Link>
         
       </nav>
-      <div>
+      {/* <div>
         <input type="text" placeholder="Pesquisar por um pokemon..." onChange={(event)=>setFilter(event.target.value)}/>
-      </div>
+      </div> */}
     </StyledHeader>
   );
 };

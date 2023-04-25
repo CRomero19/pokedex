@@ -8,7 +8,7 @@ interface pokeTypes {
 export const StyledPokePage = styled.div`
   width: 55%;
   margin: 0 auto;
-  
+  font-family: 'Roboto';
   main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -47,7 +47,7 @@ export const StyledPokePage = styled.div`
     padding: 0.2rem 0.6rem;
     text-transform: capitalize;
     font-size: 1rem;
-    background-color: ${({ pokeTypes }:any) => getTypeColor(pokeTypes[0])}
+    background-color: ${({ pokeTypes }: any) => getTypeColor(pokeTypes[0])}
   }
 
   figure {
@@ -97,7 +97,12 @@ export const StyledPokePage = styled.div`
     width: 100%;
    
   }
-
+ .bold-text{
+  font-weight: 700;
+ }
+ .title{
+  font-size: 1.2rem;
+ }
   @media (max-width: 1024px) {
     width: 98%;
 

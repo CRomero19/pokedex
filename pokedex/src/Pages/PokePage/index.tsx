@@ -153,7 +153,7 @@ const PokePage = () => {
 
         </figure>
         <div className="container__info">
-          <h1> General information </h1>
+          <h1> <span className="bold-text title"> General information </span> </h1>
           {description.base_happiness != undefined ? (
             <div>
               <p>
@@ -175,14 +175,15 @@ const PokePage = () => {
         </div>
 
         <div className="container__status">
-          <h2> Battle Attributes </h2>
+          <h2> <span className="bold-text title"> Battle Attributes </span> </h2>
           {poke.id != undefined ? (
             poke.stats.map((stat) => (
               <p key={uuidv1()}>
-                {" "}
+                <span className="bold-text">
                 {stat.stat.name.charAt(0).toUpperCase() +
-                  stat.stat.name.slice(1)}
-                : {stat.base_stat}
+                  stat.stat.name.slice(1)}:
+                </span>
+                 {stat.base_stat}
               </p>
             ))
           ) : (
@@ -191,11 +192,11 @@ const PokePage = () => {
         </div>
 
         <div className="container__other">
-          <h2> Poke Nature </h2>
-          <p> Weight: {(poke.weight * 0.1).toFixed(1)}kg </p>
-          <p> Height: {(poke.height * 0.1).toFixed(2)}m</p>
-          <p> Base happiness: {description.base_happiness}</p>
-          <p> Capture rate: {description.capture_rate}</p>
+          <h2> <span className="bold-text title"> Poke Nature </span> </h2>
+          <p> <span className="bold-text">  Weight:</span> {(poke.weight * 0.1).toFixed(1)}kg </p>
+          <p> <span className="bold-text">  Height:</span> {(poke.height * 0.1).toFixed(2)}m</p>
+          <p> <span className="bold-text">  Base happiness:</span> {description.base_happiness}</p>
+          <p> <span className="bold-text">  Capture rate:</span> {description.capture_rate}</p>
         </div>
       </main>
       <PokeEvolutions />
