@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 
 export const StyledPokePageHeader = styled.div`
-  font-size: var(--font-title-medium);
   text-transform: capitalize;
   color: var(--color-grey-0);
   width: 100%;
@@ -14,8 +13,6 @@ export const StyledPokePageHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 0.3rem;
 
   button {
     border: none;
