@@ -13,9 +13,11 @@ export const StyledPokePageHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 15px;
 
   button {
     border: none;
     background-color: transparent;
   }
+
 `;
