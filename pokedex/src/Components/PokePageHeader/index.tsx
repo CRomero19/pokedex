@@ -5,16 +5,22 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { v1 as uuidv1 } from "uuid";
 
 export const PokePageHeader = ({ pokeUrl,pokeName,pokeId,pokeTypes }:any) => {
-
   return (
     <StyledPokePageHeader>
 
-        <button onClick={() => location.reload()}>
-          <Link to={`/home/poke/${Number(pokeUrl) - 1}`}>
-            {" "}
-            <FaAngleDoubleLeft color="var(--color-grey-0)" />{" "}
-          </Link>
-        </button>
+        {
+          pokeUrl > 1
+          ?
+          <button onClick={() => location.reload()}>
+            <Link to={`/home/poke/${Number(pokeUrl) - 1}`}>
+              {" "}
+              <FaAngleDoubleLeft color="var(--color-grey-0)" />{" "}
+            </Link>
+          </button>
+          : 
+          null
+        }
+
         <h1>
           {" "}
           {pokeName} <span> Nº{pokeId} </span>{" "}
